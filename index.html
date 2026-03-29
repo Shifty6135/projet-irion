@@ -176,6 +176,25 @@
       color: #89a8cc;
       font-size: 13px;
       opacity: 0.9;
+      text-align: right;
+    }
+
+    .footer a {
+      color: #b7e7ff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .screen {
+      margin-top: 12px;
+      width: min(560px, 100%);
+      border: 1px solid rgba(255, 120, 120, 0.45);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(120, 10, 10, 0.25);
+      display: block;
     }
 
     @keyframes rise {
@@ -216,6 +235,7 @@
 
       <div class="warn">
         Note: IRION ne demandera jamais d'informations personnelles. ou pouvent etre utilisées contre vous. Telechargez uniquement depuis les liens officiels 
+        Windows peut afficher une alerte SmartScreen pour les applications recentes. C'est normal. Verifiez que le fichier vient bien de ce depot GitHub puis cliquez sur Informations complementaires > Executer quand meme.
       </div>
     </section>
 
@@ -227,6 +247,15 @@
         <li>Clique sur Telecharger IRION.exe (GitHub).</li>
         <li>Ouvre IRION.exe puis accepte la creation du raccourci lors de la premiere ouverture.</li>
       </ol>
+    </section>
+
+    <section class="steps">
+      <h3>Exemple d'ecran Windows</h3>
+      <p>
+        Si cet ecran apparait, c'est la protection Windows SmartScreen. Verifie la source puis clique sur
+        Informations complementaires, ensuite Executer quand meme.
+      </p>
+      <img class="screen" src="smartscreen-warning.png" alt="Capture de l'alerte Windows SmartScreen" />
     </section>
 
     <section class="steps">
@@ -254,7 +283,8 @@
       </ol>
     </section>
 
-    <p class="footer">IRION • Build local Windows</p>
+    <p class="footer">IRION • Build local Windows • GitHub: <a href="https://github.com/Shifty6135" target="_blank" rel="noopener noreferrer">@Shifty6135</a></p>
   </main>
 </body>
 </html>
+
