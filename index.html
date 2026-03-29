@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IRION - Telechargement</title>
+  <meta name="description" content="Telechargez IRION depuis GitHub Releases et consultez le MAJ log." />
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-soft: #10192a;
+      --card: rgba(17, 28, 47, 0.85);
+      --line: rgba(122, 185, 255, 0.28);
+      --text: #e9f3ff;
+      --text-soft: #a7c4e8;
+      --accent: #4ec3ff;
+      --accent-2: #9de7ff;
+      --warn: #ffd66e;
+      --shadow: 0 20px 60px rgba(11, 20, 36, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, #133056 0%, transparent 36%),
+        radial-gradient(circle at 85% 20%, #1b254a 0%, transparent 34%),
+        radial-gradient(circle at 50% 90%, #0f3f4d 0%, transparent 38%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.2;
+      background-image:
+        linear-gradient(transparent 95%, rgba(255, 255, 255, 0.04) 96%),
+        linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.04) 96%);
+      background-size: 22px 22px;
+    }
+
+    .container {
+      width: min(1080px, 92vw);
+      margin: 0 auto;
+      padding: 44px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px 28px;
+      background: linear-gradient(145deg, rgba(16, 31, 54, 0.95), rgba(8, 14, 25, 0.88));
+      box-shadow: var(--shadow);
+      animation: rise 700ms ease-out;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(78, 195, 255, 0.1);
+      color: var(--accent-2);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      text-transform: uppercase;
+      text-shadow: 0 0 28px rgba(78, 195, 255, 0.25);
+    }
+
+    .hero p {
+      margin: 16px 0 0;
+      max-width: 760px;
+      color: var(--text-soft);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .cards {
+      margin-top: 24px;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 18px;
+      animation: rise 700ms ease-out;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 10px 0 14px;
+      color: var(--text-soft);
+      line-height: 1.55;
+      min-height: 68px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      border: 1px solid rgba(154, 227, 255, 0.5);
+      border-radius: 12px;
+      padding: 11px 14px;
+      color: var(--text);
+      background: linear-gradient(180deg, rgba(78, 195, 255, 0.24), rgba(78, 195, 255, 0.12));
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: #b7ecff;
+      box-shadow: 0 10px 24px rgba(83, 196, 255, 0.26);
+    }
+
+    .warn {
+      margin-top: 18px;
+      border: 1px solid rgba(255, 214, 110, 0.35);
+      border-radius: 14px;
+      background: rgba(66, 52, 17, 0.28);
+      color: #ffe8b0;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    .steps {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(15, 25, 40, 0.74);
+      animation: rise 700ms ease-out;
+    }
+
+    .steps h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .steps ol {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: #89a8cc;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(8px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 840px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero p { font-size: 16px; }
+      .container { padding-top: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="container">
+    <section class="hero">
+      <span class="badge">IRION Telechargement</span>
+      <h1>Installe IRION en 1 minute</h1>
+      <p>
+        Recupere la derniere version de IRION  .
+        Le bouton <strong>Mise a jour</strong> dans IRION redirige vers cette page.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h2>comment installer IRION</h2>
+          <p>Telecharge la derniere version officielle depuis se site.</p>
+          <a class="btn" href="">
+            -> Telecharger IRION.exe
+          </a>
+        </article>
+      </div>
+
+      <div class="warn">
+        Note: IRION ne demandera jamais d'informations personnelles. ou pouvent etre utilisées contre vous. Telechargez uniquement depuis les liens officiels 
+      </div>
+    </section>
+
+    <section class="steps">
+      <h3>Comment mettre a jour IRION</h3>
+      <ol>
+        <li>Ouvre IRION puis va dans Parametres.</li>
+        <li>Clique sur Mettre a jour IRION.</li>
+        <li>Clique sur Telecharger IRION.exe (GitHub).</li>
+        <li>Ouvre IRION.exe puis accepte la creation du raccourci lors de la premiere ouverture.</li>
+      </ol>
+    </section>
+
+    <section class="steps">
+      <h3>Lien public</h3>
+      <ol>
+        <li>Page Releases:</li>
+        <li>Telechargement direct EXE: </li>
+      </ol>
+    </section>
+
+    <section class="steps">
+      <h3>MAJ Log</h3>
+      <ol>
+        <li>v1.0.0: Base IRION, interface graphique, profils avec mot de passe.</li>
+        <li>v1.0.1: Correction crash vocal (thread-safe), meilleure stabilite au lancement.</li>
+        <li>v1.0.2: Installer/Desinstaller deplaces dans Parametres + bouton Mise a jour.</li>
+        <li>v1.0.3: Redirection Mise a jour vers ce site + profils persistants dans AppData.</li>
+        <li>v1.0.4: Proposition de creation de raccourci au premier lancement.</li>
+         <li>v1.0.5:correction de bugs+ améliorations du site.</li>
+      </ol>
+    </section>
+
+    <p class="footer">IRION • Build local Windows</p>
+  </main>
+</body>
+</html>
